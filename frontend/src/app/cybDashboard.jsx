@@ -6,7 +6,7 @@ import LoginForm from '../authentication/cybFormLogin.jsx';
 
 class MainDashboard extends PureComponent {
   displayLogin() {
-    return !!this.props.loginState;
+    return this.props.loginState;
   }
 
   render() {
