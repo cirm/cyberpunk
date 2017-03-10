@@ -1,0 +1,42 @@
+{
+  "name": "Decker-server",
+  "version": "1.0.0",
+  "description": "Socket io client for Deckers",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prestart": "npm run db:migrate",
+    "start": "nodemon --harmony --harmony_async_await --trace-warnings -L -- index.js",
+    "test": "mocha --harmony --harmony_async_await",
+    "test:watch": "npm run test -- --watch",
+    "db:migrate": "node ./node_modules/db-migrate/bin/db-migrate up",
+    "db:revert": "db-migrate down",
+    "db:create": "db-migrate create"
+  },
+  "author": "cirm",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.4.0",
+    "db-migrate": "^0.10.0-beta.16",
+    "db-migrate-pg": "^0.1.9",
+    "jsonwebtoken": "^7.0.0",
+    "lodash": "^4.16.1",
+    "moment": "^2.13.0",
+    "nodemon": "^1.9.1",
+    "pg-monitor": "^0.7.1",
+    "pg-promise": "^5.6.3",
+    "socket.io": "latest",
+    "socket.io-client": "latest",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2"
+  }
+}

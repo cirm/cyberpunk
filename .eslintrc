@@ -1,0 +1,30 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "it": false,
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false
+  },
+  "parser": "eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "plugins": [
+    "react",
+    "mocha"
+  ]
+}

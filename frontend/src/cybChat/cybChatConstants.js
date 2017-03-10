@@ -1,0 +1,4 @@
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const GET_MESSAGE = 'GET_MESSAGE';
+export const GET_CHAT_HISTORY = 'GET_CHAT_HISTORY';
+export const SET_CHAT_HISTORY = 'SET_CHAT_HISTORY';

@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "spark",
+    "password": "salasala",
+    "host": "postgres1.cyberpunk",
+    "database": "cyberpunk",
+    "schema": "dbv"
+  },
+  "sql-file": true
+}

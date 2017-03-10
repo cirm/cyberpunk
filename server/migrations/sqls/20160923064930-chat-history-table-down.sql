@@ -1,0 +1,1 @@
+DROP TABLE decker.chat_history CASCADE;

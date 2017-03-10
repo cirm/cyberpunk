@@ -1,0 +1,88 @@
+.cybChatTextArea__chatStyle___3Vws3 {
+  font-size: 0.8em;
+  height: 30em;
+  overflow: scroll;
+  padding: 0.5em;
+}
+.formStyle__body___3-ZDP {
+  color: #28fc91;
+}
+.formStyle__button___1pa_v {
+  color: #28fc91;
+}
+.cybHeader__body___eX80i {
+  background-color: #0f2219;
+  color: #40ffff;
+  padding: 1em;
+  float: left;
+  width: 93vw;
+  height: 10vh;
+}
+.cybHeader__loginButton___103Pp {
+  float: right;
+  margin: 2px;
+  background-color: #0f2219;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 8px;
+  border: solid 2px;
+  color: #28fc91;
+}
+.cybHeader__loginButton___103Pp:hover {
+  color: #40ffff;
+}
+.cybApp__body_left___18lL1 {
+  background: #0f2219;
+  border: 2px solid #28fc91;
+  float: left;
+  margin: 0.5em;
+  overflow: auto;
+  padding: 1em;
+  width: 75%;
+}
+.cybApp__body_right___1xhJE {
+  border: 2px solid #28fc91;
+  float: left;
+  margin: 0.5em;
+  padding: 1em;
+  width: 14.5%;
+}
+.cybApp__header___26C8G {
+  background: #0f2219;
+  border: 2px solid #28fc91;
+  clear: both;
+  float: left;
+  margin: 1em;
+  padding: 1em;
+  width: 96vw;
+}
+@font-face {
+  font-family: 'ahamonomonospaced';
+  src: url(data:application/font-woff2;base64,) format('woff2'), url(data:application/font-woff;base64,) format('woff');
+}
+font-weight normal,
+font-style normal,
+.cybApp__global___3FYIb {
+  background-color: #0f2219;
+  font-family: ahamonomonospaced !important;
+  font-size: 0.688em;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.cybApp__container___2DGhr {
+  position: relative;
+  clear: both;
+  border: 2px solid #28fc91;
+  float: left;
+  padding: 1em;
+  margin: 1em;
+  width: 96vw;
+  overflow: hidden;
+}
