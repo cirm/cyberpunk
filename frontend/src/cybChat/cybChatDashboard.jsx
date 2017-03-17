@@ -5,6 +5,7 @@ import ChatInput from './cybChatInput.jsx';
 import ChatTextArea from './cybChatTextArea.jsx';
 import { getChatHistory } from './cybActionCreators';
 import { socketRefresh } from '../authentication/cybAuthActionCreators';
+import styles from './cybChatDashboard.styl'
 
 
 class ChatDashboard extends PureComponent {
@@ -17,11 +18,9 @@ class ChatDashboard extends PureComponent {
 
   render() {
     return (
-      <div >
-        <div>
-          <ChatTextArea {...this.props} />
-        </div>
-        <div>
+      <div className={styles.chat}>
+          <ChatTextArea  {...this.props} />
+        <div className={styles.input}>
           <ChatInput {...this.props} />
         </div>
       </div>

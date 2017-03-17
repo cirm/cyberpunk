@@ -32,7 +32,7 @@ module.exports = {
       test: /\.styl$/,
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: ["css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
+        use: ["css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]",
           "postcss-loader",
           "stylus-loader"]
       })

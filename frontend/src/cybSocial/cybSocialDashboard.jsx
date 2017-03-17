@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import PureComponent from '../lib/PureComponent';
 import { getOnlineDeckers } from './cybSocialActionsCreators';
+import styles from './cybSocialDashboard.styl';
 
 
 class SocialDashboard extends PureComponent {
@@ -11,7 +12,7 @@ class SocialDashboard extends PureComponent {
 
   render() {
     return (
-      <div><p>oglaf</p></div>
+      <div className={styles.body_right}><p>oglaf</p></div>
     );
   }
 

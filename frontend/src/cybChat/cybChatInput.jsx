@@ -15,19 +15,26 @@ const logField = (input) => {
   dispatch(reset('ChatForm'));
 };
 
+const formStyle = {
+  display: 'flex',
+  flex: 1,
+};
+
 const inputStyle = {
-  width: '80px',
+  flex: 12,
+  order: 0,
+  width: 100,
   float: 'left',
-  marginLeft: '1.5em',
+  marginLeft: '1em',
 };
 
 const buttonStyle = {
-  marginLeft: '1.5em',
+  flex: 1,
 };
 
 const renderInput = field => (  // Define stateless component to render input and errors
-  <div>
-    <input {...field.input} autoFocus type={field.type} />
+  <div style={formStyle}>
+    <input style={formStyle} {...field.input} autoFocus type={field.type} />
     {
       field.meta.touched &&
       field.meta.error &&
@@ -40,7 +47,7 @@ const chatForm = props => {
   dispatch = props.dispatch;
   display = props.display || 'skiddle';
   return (
-    <form onSubmit={handleSubmit(logField)} >
+    <form style={formStyle} onSubmit={handleSubmit(logField)} >
       <div style={inputStyle} >
         <Field name="text" type="text" label="chat" component={renderInput} />
       </div>

@@ -1,47 +1,45 @@
 $neon-green = #28FC91
 $green-black = #0f2219
 
-html, body, .viewport
+html, body
   width 100%
   height 100%
   margin 0
+  padding 0
+  display flex
+  flex-direction column
   background: $green-black
   font-family: ahamonomonospaced !important
 
 .body_left
-  background: $green-black
-  border: 2px solid $neon-green
-
-.body_right
-  border: 2px solid $neon-green
-
-.header
-  background: $green-black
-  border: 2px solid $neon-green
-  flex: 1 100%
-  display: flex
-  padding: 10px
-  margin: 10px
+  display flex
+  flex-direction column
+  justify-content flex-end
+  flex 6 auto
+  order 0 !important
+  border 2px solid $neon-green
+  padding 2px
+  box-sizing border-box
 
 @font-face
   font-family 'ahamonomonospaced'
   src url('./ahamono-webfont.woff2') format('woff2'),
-
 url('./ahamono-webfont.woff') format('woff')
 font-weight normal
 font-style normal
-.global
-  display: flex
-  flex-wrap: wrap
-  flex-direction: row
-  justify-content: space-around
-  align-content space-around
 
-.container
-  border: 2px solid $neon-green
-  flex: 1 100%
-  padding: 10px
-  margin: 10px
+.global
+  display flex
+  flex-direction column
+  flex 1
+  font-family: ahamonomonospaced !important
+
+.body
+  border 2px solid $neon-green
+  margin 5px
+  padding 2px
+  display flex
+  flex 1
 
 
 

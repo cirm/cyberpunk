@@ -27,7 +27,7 @@ export class Header extends PureComponent {
 
   render() {
     return (
-      <div className={styles.body} >
+      <div className={styles.header} >
         <p className={styles.titleText} >The Deep Net!</p>
         <button className={styles.loginButton} onClick={this.triggerSignIn} >Jack in?</button>
         {/*       <AppBar

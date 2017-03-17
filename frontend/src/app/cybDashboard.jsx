@@ -3,6 +3,7 @@ import connect from 'react-redux/lib/connect/connect';
 import PureComponent from '../lib/PureComponent';
 import ChatContainer from '../cybChat/cybChatDashboard.jsx';
 import LoginForm from '../authentication/cybFormLogin.jsx';
+import styles from './cybDashboard.styl';
 
 class MainDashboard extends PureComponent {
   displayLogin() {
@@ -11,9 +12,9 @@ class MainDashboard extends PureComponent {
 
   render() {
     return (
-      <div >
-        <div >{this.displayLogin() ? <LoginForm {...this.props} /> :
-          <ChatContainer {...this.props} />}</div>
+      <div className={styles.l_container} >
+        {this.displayLogin() ? <LoginForm {...this.props} /> :
+          <ChatContainer  {...this.props} />}
       </div>);
   }
 }

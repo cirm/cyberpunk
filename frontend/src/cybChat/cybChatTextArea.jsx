@@ -6,6 +6,9 @@ moment.locale('et');
 
 const lineStyle = {
   color: '#28FC91',
+  height: '1em',
+  margin: 5,
+  'margin-left': '1em',
 };
 
 const renderChatBox = (props) => (

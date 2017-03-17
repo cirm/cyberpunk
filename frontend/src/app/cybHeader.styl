@@ -1,25 +1,23 @@
-.body
-  background-color #0f2219
-  flex-wrap: nowrap
-  font-weight: bold
-  display: flex
-  font-size: 1em
-  text-align: center
-  align-content: flex-end
+.header
+  flex 0 1 auto
+  display flex
+  justify-content flex-end
+  align-items center
+  padding 5px
+  margin 5px
+  border 2px solid #28FC91
+  height 2em
 
 .loginButton
-  background-color #0f2219
-  font-size 1.3em
-  font-weight bold
-  border solid 2px
-  margin: 5px
-  padding: 15px 32px
-  display: inline-block
-  text-align: center
-  text-decoration: none
+  padding 2px
+  order 1 !important
   color #28FC91
   &:hover
     color #40ffff
 
 .titleText
-  color #40FFFF
+  color: #40FFFF
+  order 0 !important
+  flex 1
+  align-items center
+  display flex
