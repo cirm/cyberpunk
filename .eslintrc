@@ -21,10 +21,12 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:lodash-fp/recommended"
   ],
   "plugins": [
     "react",
-    "mocha"
+    "mocha",
+    "lodash-fp"
   ]
 }
