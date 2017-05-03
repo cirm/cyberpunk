@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const sessions = require('../src/models/sessionModel');
+const sessions = require('../../src/models/sessionModel');
 const _ = require('lodash');
 const sinon = require('sinon');
 

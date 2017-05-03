@@ -9,7 +9,7 @@
   "scripts": {
     "prestart": "npm run db:migrate",
     "start": "nodemon --harmony --harmony_async_await --trace-warnings -L -- index.js",
-    "test": "mocha --harmony --harmony_async_await",
+    "test": "mocha --harmony --harmony_async_await --recursive",
     "test:watch": "npm run test -- --watch",
     "db:migrate": "node ./node_modules/db-migrate/bin/db-migrate up",
     "db:revert": "db-migrate down",

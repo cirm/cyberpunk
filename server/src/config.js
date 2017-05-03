@@ -18,7 +18,7 @@ const config = {
       pgUser: process.env.POSTGRES_USER || 'spark',
       pgPass: process.env.POSTGRES_PASSWORD || 'salasala',
       port: process.env.POSTGRES_PORT || 5432,
-      host: 'postgres1.cyberpunk',
+      host: 'localhost',
       database: process.env.POSTGRES_DB || 'cyberpunk',
     },
   },
