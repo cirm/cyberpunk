@@ -3,7 +3,7 @@
     "driver": "pg",
     "user": "spark",
     "password": "salasala",
-    "host": "postgres1.cyberpunk",
+    "host": "localhost",
     "database": "cyberpunk",
     "schema": "dbv"
   },
