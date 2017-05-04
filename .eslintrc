@@ -1,22 +1,5 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 8,
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "globals": {
-    "it": false,
-    "describe": false,
-    "beforeEach": false,
-    "afterEach": false
-  },
   "parser": "eslint",
-  "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true
-  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -27,5 +10,16 @@
     "react",
     "mocha",
     "lodash-fp"
-  ]
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": 2,
+    "mocha/handle-done-callback": 2,
+    "mocha/no-synchronous-tests": 2,
+    "react/prefer-stateless-function": [
+      2,
+      {
+        "ignorePureComponents": true
+      }
+    ]
+  }
 }

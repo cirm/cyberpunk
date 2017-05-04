@@ -34,7 +34,7 @@ const populateUser = async (user = { username: 'skiddle' }, db) => {
  * @param user
  * @param passwordToMatch
  * @param db
- * @returns {Promise.<bool>}
+ * @returns {Promise.<bool> || bool}
  */
 const authenticate = async (user, passwordToMatch, db) => {
   if (!user || !user.username) {

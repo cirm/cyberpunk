@@ -16,8 +16,8 @@ const addUserOnline = async(userId, username, socket) => {
         updateExistingUser(object, userId, username, socket);
     }
     return addNewUser(userId, username, socket);
-  }
-  ;
+  };
+
 const getUserBySocket = async socketId => await _.find(onlineUsers, ['socket.id', socketId]);
 const getOnlineUsers = async() => await _.reduce(onlineUsers, (result, val) => {
   result.push(_.set({}, val.userId, val.username));
