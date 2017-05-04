@@ -2,7 +2,7 @@ const bcrypt = require('../utilities/bcrypt');
 
 /**
  * Takes db result and cleans it up to a json object
- * @param data
+ * @param {Object.<string>} data Object used to build User
  * @returns {{id: string, username: string, display: string, roles: string, password: string}}
  */
 function sanitizeDbUser(data = {}) {
@@ -16,10 +16,11 @@ function sanitizeDbUser(data = {}) {
 }
 
 /**
- *
- * @param user
- * @param db
- * @returns {Promise.<{id: string, username: string, display: string, roles: string, password: string}>}
+ * Based on username, returns user object with populated db data
+ * @param {Object.<string>} user Username to query, defaults to 'skiddle'
+ * @param db Db instance to use for querying
+ * @returns {Promise.<{id: string, username: string,
+  *   display: string, roles: string, password: string}>}
  */
 const populateUser = async (user = { username: 'skiddle' }, db) => {
   if (!db) throw new Error('Missing database');
@@ -35,10 +36,10 @@ const populateUser = async (user = { username: 'skiddle' }, db) => {
 };
 
 /**
- *
- * @param user
- * @param passwordToMatch
- * @param db
+ * Runs bcrypt hash comparison against provided password
+ * @param {Object.<string>} user    User object that we use as baseline for confirmation
+ * @param {string} passwordToMatch  Provided password that needs verification
+ * @param db Db instance used for querying
  * @returns {Promise.<bool> || bool}
  */
 const authenticate = async (user, passwordToMatch, db) => {
