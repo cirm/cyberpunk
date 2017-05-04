@@ -1,10 +1,9 @@
-const Promise = require('bluebird');
-const bcrypt = Promise.promisifyAll(require('bcrypt'));
+const bcrypt = require('bcrypt');
 
-const createSalt = async() => await bcrypt.genSaltAsync(11);
-const hashPwd = async(pwd, salt) => await bcrypt.hashAsync(pwd, salt);
-const compareHash = async(password, hashedPassword) =>
-  await bcrypt.compareAsync(password, hashedPassword);
+const createSalt = (times = 11) => bcrypt.genSalt(times);
+const hashPwd = (pwd, salt) => bcrypt.hash(pwd, salt);
+const compareHash = (password, hashedPassword) =>
+  bcrypt.compare(password, hashedPassword);
 
 module.exports = {
   createSalt,

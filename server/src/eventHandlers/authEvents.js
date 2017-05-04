@@ -48,7 +48,7 @@ const renewSocketAuth = async(data, socket) => {
 };
 
 const doAuth = async(data, socket) => {
-  if (!data || !data.username) return await socket.emit(events.UNAUTHORIZED);
+  if (!data || !data.username) return socket.emit(events.UNAUTHORIZED);
   logger.info(`We got authToken event for username: ${data.username}`);
   let shouldAccess;
   let decker;
