@@ -18,7 +18,7 @@ describe('Token', () => {
     const client = io.connect(authUrl, options);
     client.on('connect', () => {
       client.emit(authEvent, { username: 'bakufu', password: 'EndOria' });
-      client.on(tokenEvent, response => {
+      client.on(tokenEvent, (response) => {
         token = response.token;
         client.disconnect();
         done();
@@ -41,7 +41,7 @@ describe('Token', () => {
     const client1 = io.connect(socketUrl, options);
     client1.on('connect', () => {
       client1.emit('testing');
-      client1.on(errorEvent, response => {
+      client1.on(errorEvent, (response) => {
         expect(response).to.equal('Authentication error');
         client1.disconnect();
         done();
@@ -55,7 +55,7 @@ describe('Token', () => {
     const client1 = io.connect(socketUrl, options);
     client1.on('connect', () => {
       client1.emit('testing', data);
-      client1.on(errorEvent, response => {
+      client1.on(errorEvent, (response) => {
         expect(response).to.equal('Authentication error');
         client1.disconnect();
         done();
@@ -72,7 +72,7 @@ describe('Token', () => {
     const client1 = io.connect(socketUrl, options);
     client1.on('connect', () => {
       client1.emit('testing', data);
-      client1.on(errorEvent, response => {
+      client1.on(errorEvent, (response) => {
         expect(response).to.equal('Authentication error');
         client1.disconnect();
         done();
@@ -89,7 +89,7 @@ describe('Token', () => {
     const client1 = io.connect(socketUrl, options);
     client1.on('connect', () => {
       client1.emit('testing', data);
-      client1.on(errorEvent, response => {
+      client1.on(errorEvent, (response) => {
         expect(response).to.equal('Authentication error');
         client1.disconnect();
         done();
@@ -106,7 +106,7 @@ describe('Token', () => {
     const client1 = io.connect(socketUrl, options);
     client1.on('connect', () => {
       client1.emit('testing', data);
-      client1.on(errorEvent, response => {
+      client1.on(errorEvent, (response) => {
         expect(response).to.equal('Authentication error');
         client1.disconnect();
         done();

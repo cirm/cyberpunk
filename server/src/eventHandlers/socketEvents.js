@@ -10,7 +10,7 @@ const protectedRoutes = { testing: testingEvent };
 
 const attachProtectedEventsToSocket = (socket) => {
   _.mapValues(protectedRoutes, (fn, key) =>
-    socket.on(key, async(data) => {
+    socket.on(key, async (data) => {
       if (!data || !data.token) {
         socket.emit('ERROR', 'Authentication error');
         return;
@@ -25,7 +25,6 @@ const attachProtectedEventsToSocket = (socket) => {
 };
 
 const socketEvents = (socket) => {
-
   logger.info(`We got a connection: ${socket.id}`);
   attachProtectedEventsToSocket(socket);
   authEvents.attachEvents(socket);

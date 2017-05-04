@@ -26,7 +26,12 @@ const populateUser = async (user = { username: 'skiddle' }, db) => {
   let qr = await db.queryFunction('decker.get_player_data', user.username);
   if (qr[0].get_player_data === null) throw new Error(`No record of user: ${user.username}`);
   qr = qr[0].get_player_data[0];
-  return sanitizeDbUser({ id: qr.id, username: qr.username, roles: qr.roles, password: qr.hpassword });
+  return sanitizeDbUser({
+    id: qr.id,
+    username: qr.username,
+    roles: qr.roles,
+    password: qr.hpassword,
+  });
 };
 
 /**

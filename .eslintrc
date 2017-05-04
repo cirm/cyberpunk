@@ -1,5 +1,4 @@
 {
-  "parser": "eslint",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -11,6 +10,11 @@
     "mocha",
     "lodash-fp"
   ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
   "rules": {
     "mocha/no-exclusive-tests": 2,
     "mocha/handle-done-callback": 2,

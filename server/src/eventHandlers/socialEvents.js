@@ -1,6 +1,6 @@
 const sessions = require('../models/sessionModel');
 
-const getOnlineUsers = async(socket) => {
+const getOnlineUsers = async (socket) => {
   const userList = await sessions.getOnlineUsers();
   socket.emit('USER_LIST', userList);
 };

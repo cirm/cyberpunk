@@ -7,6 +7,7 @@ const events = require('../constants');
 const sessions = require('../models/sessionModel');
 const users = require('../models/userModel');
 const errors = require('../utilities/errors');
+
 const authenticationError = errors.authenticationError;
 const tokenError = errors.tokenError;
 
@@ -20,7 +21,7 @@ function extractToken(bearerToken) {
   return parts[1];
 }
 
-const checkToken = async(bearer) => {
+const checkToken = async (bearer) => {
   if (!bearer) return false;
   let isAllowed;
   const token = extractToken(bearer);
@@ -33,12 +34,12 @@ const checkToken = async(bearer) => {
   return isAllowed;
 };
 
-const validateTokenFlow = async(token) => {
+const validateTokenFlow = (token) => {
   if (!token) return false;
-  return await checkToken(token);
+  return checkToken(token);
 };
 
-const renewSocketAuth = async(data, socket) => {
+const renewSocketAuth = async (data, socket) => {
   const profile = await validateTokenFlow(data.token, socket);
   if (!profile) {
     return socket.emit(events.ERROR, 'Authentication error');
@@ -47,7 +48,7 @@ const renewSocketAuth = async(data, socket) => {
   return socket.emit(events.SOCKET_RENEWED);
 };
 
-const doAuth = async(data, socket) => {
+const doAuth = async (data, socket) => {
   if (!data || !data.username) return socket.emit(events.UNAUTHORIZED);
   logger.info(`We got authToken event for username: ${data.username}`);
   let shouldAccess;
@@ -75,7 +76,7 @@ const doAuth = async(data, socket) => {
   }
 };
 
-const logout = async(socket) => {
+const logout = async (socket) => {
   const user = await sessions.getUserBySocket(socket.id);
   if (!user) return;
   await sessions.userSignOff(user.userId);

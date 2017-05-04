@@ -3,7 +3,7 @@ const events = require('../constants');
 const sessions = require('../models/sessionModel');
 const logger = require('../utilities/winston');
 
-const handleNewMessage = async(textObject, socket) => {
+const handleNewMessage = async (textObject, socket) => {
   const data = {};
   data.text = textObject.text;
   data.timestamp = new Date();
@@ -23,7 +23,7 @@ const handleNewMessage = async(textObject, socket) => {
   return socket.broadcast.emit(events.GET_MESSAGE, data);
 };
 
-const queryHistory = async(socket) => {
+const queryHistory = async (socket) => {
   const history = await db.queryFunction('decker.get_chat_history');
   return socket.emit(events.SET_CHAT_HISTORY, history[0].get_chat_history);
 };

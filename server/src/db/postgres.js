@@ -20,10 +20,10 @@ const pool = pgp(cn);
 /**
  * Query postgres function (stored procedure).
  * @param {string} string Function name to query
- * @param {string} values Query parameters that the function accepts
+ * @param {string[]} values Query parameters that the function accepts
  * @returns {json}
  */
-const queryFunction = async(string, values) => await pool.func(string, values);
+const queryFunction = (string, values) => pool.func(string, values);
 
 /**
  * Query against postgres DB

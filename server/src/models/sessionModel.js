@@ -3,29 +3,27 @@ const events = require('../constants');
 
 const onlineUsers = [];
 
-const updateExistingUser = async(object, userId, username, socket) => {
+const updateExistingUser = async (object, userId, username, socket) => {
   object.socket.emit(events.LOGOUT);
-  return await _.assign(object, { socket });
+  return _.assign(object, { socket });
 };
-const addNewUser = (userId, username, socket) => onlineUsers.push({ userId, username, socket });
+const addNewUser = async (userId, username, socket) => onlineUsers.push({ userId, username, socket });
 
-const addUserOnline = async(userId, username, socket) => {
-    const object = await _.find(onlineUsers, ['userId', userId]);
-    if (object) {
-      return await
-        updateExistingUser(object, userId, username, socket);
-    }
-    return addNewUser(userId, username, socket);
-  };
+const addUserOnline = async (userId, username, socket) => {
+  const object = await _.find(onlineUsers, ['userId', userId]);
+  if (object) {
+    return updateExistingUser(object, userId, username, socket);
+  }
+  return addNewUser(userId, username, socket);
+};
 
-const getUserBySocket = async socketId => await _.find(onlineUsers, ['socket.id', socketId]);
-const getOnlineUsers = async() => await _.reduce(onlineUsers, (result, val) => {
+const getUserBySocket = async socketId => _.find(onlineUsers, ['socket.id', socketId]);
+const getOnlineUsers = () => _.reduce(onlineUsers, (result, val) => {
   result.push(_.set({}, val.userId, val.username));
   return result;
 }, []);
 
-const userSignOff = async userId =>
-  await _.remove(onlineUsers, user => user.userId === userId);
+const userSignOff = async userId => _.remove(onlineUsers, user => user.userId === userId);
 
 const rooms = {};
 

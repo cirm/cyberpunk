@@ -14,7 +14,7 @@ const authenticationError = (message = 'Wrong username/password combination') =>
 const tokenError = (message = 'Unknown error') => {
   const err = new Error();
   err.message = `Token verification error: ${message}`;
-  return err
+  return err;
 };
 
 module.exports = {
