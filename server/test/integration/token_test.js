@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const io = require('socket.io-client');
 
-const socketUrl = 'http://0.0.0.0:4545';
+const socketUrl = 'http://localhost:4545';
 const options = {
   transports: ['websocket'],
   'force new connection': true,

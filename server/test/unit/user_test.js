@@ -57,7 +57,7 @@ describe('Users', () => {
 
   });
   it('authenticate user with wrong PW', async () => {
-    const state = await users.authenticate({ username: 'whee', password: 'whee' }, 'whee')
+    const state = await users.authenticate({ username: 'whee', password: 'whee' }, 'whee');
     expect(state).to.equal(false);
   });
 });
