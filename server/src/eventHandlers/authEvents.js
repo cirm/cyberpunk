@@ -34,13 +34,8 @@ const checkToken = async (bearer) => {
   return isAllowed;
 };
 
-const validateTokenFlow = (token) => {
-  if (!token) return false;
-  return checkToken(token);
-};
-
 const renewSocketAuth = async (data, socket) => {
-  const profile = await validateTokenFlow(data.token, socket);
+  const profile = await checkToken(data.token);
   if (!profile) {
     return socket.emit(events.ERROR, 'Authentication error');
   }
