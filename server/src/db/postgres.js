@@ -19,8 +19,8 @@ const pool = pgp(cn);
 
 /**
  * Query postgres function (stored procedure).
- * @param {string} string Function name to query
- * @param {string[]} values Query parameters that the function accepts
+ * @param {string} string - Function name to query
+ * @param {string[]} [values] - Query parameters that the function accepts
  * @returns {json}
  */
 const queryFunction = (string, values) => pool.func(string, values);
@@ -28,7 +28,7 @@ const queryFunction = (string, values) => pool.func(string, values);
 /**
  * Query against postgres DB
  * @param {string} string Querystring
- * @param {string} values Parameters for the query
+ * @param {string} [values] Parameters for the query
  */
 const query = (string, values) => pool.query(string, values);
 // const transaction = (string, values) => pool.tx(string, values);
