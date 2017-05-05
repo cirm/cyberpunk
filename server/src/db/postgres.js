@@ -15,6 +15,9 @@ const cn = {
   password: conf.db.pgPass,
 };
 
+/**
+ * @typedef {Object} Db - Database access, that we're using for out app
+ */
 const pool = pgp(cn);
 
 /**
@@ -27,8 +30,10 @@ const queryFunction = (string, values) => pool.func(string, values);
 
 /**
  * Query against postgres DB
- * @param {string} string Querystring
- * @param {string} [values] Parameters for the query
+ * @type {Db.function}
+ * @param {string} string - Query string
+ * @param {string} [values] - Parameters for the query
+ * @returns {json}
  */
 const query = (string, values) => pool.query(string, values);
 // const transaction = (string, values) => pool.tx(string, values);
