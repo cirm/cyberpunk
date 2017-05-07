@@ -7,6 +7,7 @@ const options = { promiseLib: Promise };
 monitor.attach(options);
 const pgp = new Pgp(options);
 
+
 const cn = {
   host: conf.db.host,
   port: conf.db.port,
@@ -14,23 +15,23 @@ const cn = {
   user: conf.db.pgUser,
   password: conf.db.pgPass,
 };
-
-/**
- * @typedef {Object} Db - Database access, that we're using for out app
- */
 const pool = pgp(cn);
 
 /**
  * Query postgres function (stored procedure).
+ *
  * @param {string} string - Function name to query
  * @param {string[]} [values] - Query parameters that the function accepts
- * @returns {json}
+ * @returns {Promise.<json>}
  */
-const queryFunction = (string, values) => pool.func(string, values);
+const queryFunction = (string, values) => pool.func(string, values).then((data) => {
+  console.log(data);
+  return data;
+});
 
 /**
  * Query against postgres DB
- * @type {Db.function}
+ *
  * @param {string} string - Query string
  * @param {string} [values] - Parameters for the query
  * @returns {json}

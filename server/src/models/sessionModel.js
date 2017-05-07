@@ -7,7 +7,8 @@ const updateExistingUser = async (object, userId, username, socket) => {
   object.socket.emit(events.LOGOUT);
   return _.assign(object, { socket });
 };
-const addNewUser = async (userId, username, socket) => onlineUsers.push({ userId, username, socket });
+const addNewUser = async (userId, username, socket) =>
+  onlineUsers.push({ userId, username, socket });
 
 const addUserOnline = async (userId, username, socket) => {
   const object = await _.find(onlineUsers, ['userId', userId]);
@@ -18,6 +19,7 @@ const addUserOnline = async (userId, username, socket) => {
 };
 
 const getUserBySocket = async socketId => _.find(onlineUsers, ['socket.id', socketId]);
+
 const getOnlineUsers = () => _.reduce(onlineUsers, (result, val) => {
   result.push(_.set({}, val.userId, val.username));
   return result;

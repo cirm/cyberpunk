@@ -13,6 +13,12 @@ const tokenError = errors.tokenError;
 
 const socialEvents = require('./socialEvents');
 
+/**
+ * Extracts token part from sent JWT
+ *
+ * @param {string} bearerToken - Token used for authentication
+ * @returns {string || boolean}
+ */
 function extractToken(bearerToken) {
   const parts = bearerToken.split(' ');
   if (parts.length !== 2 || parts[0] !== 'Bearer') {
@@ -21,6 +27,12 @@ function extractToken(bearerToken) {
   return parts[1];
 }
 
+/**
+ * Handles authentication of received JWT
+ *
+ * @param {string} bearer - Encoded JWT sent by the client
+ * @returns {Promise.<string> || boolean}
+ */
 const checkToken = async (bearer) => {
   if (!bearer) return false;
   let isAllowed;
@@ -71,6 +83,11 @@ const doAuth = async (data, socket) => {
   }
 };
 
+/**
+ * Removes user from onlineUsers list
+ *
+ * @param {Socket} socket - Socket connection to log out
+ */
 const logout = async (socket) => {
   const user = await sessions.getUserBySocket(socket.id);
   if (!user) return;
