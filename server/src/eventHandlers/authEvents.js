@@ -40,7 +40,7 @@ const checkToken = async (bearer) => {
   try {
     isAllowed = await JWT.verifyAsync(token, config.tokenSecret);
   } catch (e) {
-    logger.error(tokenError(e.message));
+    logger.info(tokenError(e));
     isAllowed = false;
   }
   return isAllowed;
@@ -64,7 +64,7 @@ const doAuth = async (data, socket) => {
     decker = await users.populateUser({ username: data.username.toString() }, db);
     shouldAccess = await users.authenticate(decker, data.password, db);
   } catch (e) {
-    logger.error(authenticationError(e.message));
+    logger.info(authenticationError(e));
   }
   if (shouldAccess) {
     const token = await JWT.signAsync(

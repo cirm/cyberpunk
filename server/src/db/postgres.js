@@ -24,10 +24,7 @@ const pool = pgp(cn);
  * @param {string[]} [values] - Query parameters that the function accepts
  * @returns {Promise.<json>}
  */
-const queryFunction = (string, values) => pool.func(string, values).then((data) => {
-  console.log(data);
-  return data;
-});
+const queryFunction = (string, values) => pool.func(string, values);
 
 /**
  * Query against postgres DB
