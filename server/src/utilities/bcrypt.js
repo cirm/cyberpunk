@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
  * @param {number} times Times to generate the salt
  * @returns  {Promise.<string>}
  */
-const createSalt = (times = 11) => bcrypt.genSalt(times);
+const createSalt = async (times = 11) => bcrypt.genSalt(times);
 
 /**
  * Hash the password with given salt
@@ -13,7 +13,7 @@ const createSalt = (times = 11) => bcrypt.genSalt(times);
  * @param {string} salt Salt to hash the password with
  * @returns  {Promise.<string>}
  */
-const hashPwd = (pwd, salt) => bcrypt.hash(pwd, salt);
+const hashPwd = async (pwd, salt) => bcrypt.hash(pwd, salt);
 
 /**
  * Compare password with the hashed password
@@ -21,7 +21,7 @@ const hashPwd = (pwd, salt) => bcrypt.hash(pwd, salt);
  * @param {string} hashedPassword Hash to compare against
  * @returns {Promise.<bool>}
  */
-const compareHash = (password, hashedPassword) =>
+const compareHash = async (password, hashedPassword) =>
   bcrypt.compare(password, hashedPassword);
 
 module.exports = {

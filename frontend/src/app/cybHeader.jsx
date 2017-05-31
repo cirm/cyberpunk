@@ -10,10 +10,7 @@ export class Header extends React.PureComponent {
   constructor() {
     super();
     this.triggerSignIn = this.triggerSignIn.bind(this);
-  }
-
-  getDisplay() {
-    return !!this.props.display;
+    this.triggerLogout = this.triggerLogout.bind(this);
   }
 
   triggerLogout() {
@@ -28,7 +25,10 @@ export class Header extends React.PureComponent {
     return (
       <div className={styles.header} >
         <p className={styles.titleText} >The Deep Net!</p>
-        <Button onClick={this.triggerSignIn} >Jack in?</Button>
+        <div>
+          {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
+            <Button onClick={this.triggerSignIn} >Jack in?</Button>}
+        </div>
         {/*       <AppBar
          title="QE testing!"
          iconElementLeft={

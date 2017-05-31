@@ -98,6 +98,7 @@ const logout = async (socket) => {
 const attachEvents = (socket) => {
   socket.on(events.AUTHENTICATE, data => doAuth(data, socket));
   socket.on('disconnect', () => logout(socket));
+  socket.on(events.LOGOUT, () => logout(socket));
   socket.on(events.SOCKET_REFRESH, data => renewSocketAuth(data, socket));
 };
 

@@ -24,7 +24,7 @@ const pool = pgp(cn);
  * @param {string[]} [values] - Query parameters that the function accepts
  * @returns {Promise.<json>}
  */
-const queryFunction = (string, values) => pool.func(string, values);
+const queryFunction = async (string, values) => pool.func(string, values);
 
 /**
  * Query against postgres DB
@@ -33,7 +33,7 @@ const queryFunction = (string, values) => pool.func(string, values);
  * @param {string} [values] - Parameters for the query
  * @returns {json}
  */
-const query = (string, values) => pool.query(string, values);
+const query = async (string, values) => pool.query(string, values);
 // const transaction = (string, values) => pool.tx(string, values);
 
 module.exports = {
