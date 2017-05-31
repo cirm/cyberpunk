@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm, reset } from 'redux-form/immutable';
-import { sendMessage } from './cybActionCreators';
-import styles from './cybChatInput.styl'
+import { sendMessage } from '../cybActionCreators';
+import styles from './cybChatInput.styl';
 
 let dispatch;
 let display;
@@ -16,7 +17,7 @@ const logField = (input) => {
 };
 
 const renderInput = field => (  // Define stateless component to render input and errors
-  <div className={styles.formStyle}  >
+  <div className={styles.formStyle} >
     <input className={styles.formStyle} {...field.input} autoFocus type={field.type} />
     {
       field.meta.touched &&
@@ -25,12 +26,12 @@ const renderInput = field => (  // Define stateless component to render input an
     }
   </div>);
 
-const chatForm = props => {
+const chatForm = (props) => {
   const { handleSubmit, pristine, submitting } = props;
   dispatch = props.dispatch;
   display = props.display || 'skiddle';
   return (
-    <form className={styles.formStyle}  onSubmit={handleSubmit(logField)} >
+    <form className={styles.formStyle} onSubmit={handleSubmit(logField)} >
       <div className={styles.inputStyle} >
         <Field name="text" type="text" label="chat" component={renderInput} />
       </div>
@@ -46,6 +47,7 @@ chatForm.propTypes = {
   dispatch: PropTypes.func,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
+  display: PropTypes.string,
 };
 
 export default reduxForm({

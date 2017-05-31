@@ -1,23 +1,17 @@
-import React, { PropTypes } from 'react';
-import { HeaderContainer } from './cybHeader.jsx';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { HeaderContainer } from './cybHeader';
 import styles from './cybApp.styl';
-import DeckerList from '../cybSocial/cybSocialDashboard.jsx';
 
-const App = (props) => (
-  <div className={styles.global} >
+const App = props => (
+  <div className={styles.cybApp} >
     <HeaderContainer className={styles.header} {...props} />
-    <div className={styles.body} >
-      <div className={styles.body_left} >
-        {props.children}
-      </div>
-      <DeckerList {...props} />
-    </div>
+    {props.children}
   </div>
 );
 
 App.propTypes = {
-  children: PropTypes.object,
-  drawerState: PropTypes.object,
+  children: PropTypes.node.isRequired,
 };
 
 export default App;

@@ -1,14 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { List } from 'immutable';
+import PropTypes from 'prop-types';
 import connect from 'react-redux/lib/connect/connect';
-import PureComponent from '../lib/PureComponent';
-import ChatInput from './cybChatInput.jsx';
-import ChatTextArea from './cybChatTextArea.jsx';
+import ChatContainer from './cybChatContainer';
+import SocialConatiner from '../cybSocial/cybSocialContainer';
 import { getChatHistory } from './cybActionCreators';
 import { socketRefresh } from '../authentication/cybAuthActionCreators';
-import styles from './cybChatDashboard.styl'
+import styles from './cybChatDashboard.styl';
 
 
-class ChatDashboard extends PureComponent {
+class ChatDashboard extends React.PureComponent {
   componentWillMount() {
     if (!!this.props.renewSocket) {
       this.props.dispatch(socketRefresh());
@@ -18,22 +20,23 @@ class ChatDashboard extends PureComponent {
 
   render() {
     return (
-      <div className={styles.chat}>
-          <ChatTextArea  {...this.props} />
-        <div className={styles.input}>
-          <ChatInput {...this.props} />
-        </div>
+      <div className={styles.chat} >
+        <ChatContainer chat={this.props.chat} display={this.props.display} />
+        <SocialConatiner {...this.props} />
       </div>
     );
   }
 }
 
+ChatDashboard.defaultProps = {
+  display: '',
+  chat: new List(),
+};
+
 ChatDashboard.propTypes = {
-  focus: PropTypes.object,
-  domains: PropTypes.object,
-  provinces: PropTypes.object,
-  createMenu: PropTypes.object,
-  dispatch: PropTypes.func,
+  display: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
+  chat: ImmutablePropTypes.list,
 };
 
 function mapStateToProps(state) {

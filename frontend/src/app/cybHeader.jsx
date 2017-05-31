@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import connect from 'react-redux/lib/connect/connect';
-import Link from 'react-router/lib/Link';
-import PureComponent from '../lib/PureComponent';
+import PropTypes from 'prop-types';
+import Button from '../generalComponents/Button';
 import { logoutUser, displayLogin } from '../authentication/cybAuthActionCreators';
 import styles from './cybHeader.styl';
 
-const home = <Link to="/" />;
 
-export class Header extends PureComponent {
+export class Header extends React.PureComponent {
   constructor() {
     super();
     this.triggerSignIn = this.triggerSignIn.bind(this);
@@ -29,7 +28,7 @@ export class Header extends PureComponent {
     return (
       <div className={styles.header} >
         <p className={styles.titleText} >The Deep Net!</p>
-        <button className={styles.loginButton} onClick={this.triggerSignIn} >Jack in?</button>
+        <Button onClick={this.triggerSignIn} >Jack in?</Button>
         {/*       <AppBar
          title="QE testing!"
          iconElementLeft={
@@ -58,9 +57,13 @@ export class Header extends PureComponent {
   }
 }
 
+Header.defaultProps = {
+  display: '',
+};
+
 Header.propTypes = {
-  profile: PropTypes.object,
-  dispatch: PropTypes.func,
+  display: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -69,4 +72,6 @@ function mapStateToProps(state) {
   };
 }
 
-export const HeaderContainer = connect(mapStateToProps)(Header);
+export const HeaderContainer = connect(
+  mapStateToProps,
+)(Header);

@@ -11,7 +11,7 @@ const updateMessages = (state, data) => {
 const updateMessages1 = (state, data) => state.insert(0, fromJS(data));
 
 const setChatHistory = (state, data) => {
-  if (data == null) return state;
+  if (data === null) return state;
   return state.merge(fromJS(data).reverse());
 };
 

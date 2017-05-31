@@ -12,7 +12,7 @@ class SocialDashboard extends PureComponent {
 
   render() {
     return (
-      <div className={styles.body_right}><p>oglaf</p></div>
+      <div className={styles.socialContainer} ><p>oglaf</p></div>
     );
   }
 

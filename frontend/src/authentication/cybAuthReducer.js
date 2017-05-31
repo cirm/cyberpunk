@@ -1,5 +1,4 @@
 import { Map, fromJS } from 'immutable';
-import browserHistory from 'react-router/lib/browserHistory';
 import { AUTHENTICATE, LOGIN, LOGOUT } from './cybAuthConstants';
 import decodeProfile from './cybAuthToken';
 
@@ -18,7 +17,6 @@ const login = (state, data) => {
 
 const logout = (state) => {
   localStorage.removeItem(tokenKey);
-  browserHistory.push('/');
   return state.clear();
 };
 

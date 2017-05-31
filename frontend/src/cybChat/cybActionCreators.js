@@ -30,6 +30,6 @@ export function getChatHistory() {
 export function setChatHistory(data) {
   return {
     type: SET_CHAT_HISTORY,
-    data
+    data,
   };
 }

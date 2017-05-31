@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { authenticateUser, hideLogin } from './cybAuthActionCreators';
 import styles from './formStyle.styl';
@@ -21,14 +22,14 @@ const triggerLogin = (values) => {
   dispatch(hideLogin());
 };
 
-const loginForm = props => {
+const loginForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props;
   dispatch = props.dispatch;
   return (
     <div className={styles.body} >
       <div className={toolbarClass} >
         <div >
-          <p> "Pick your handle Cowboy!" </p>
+          <p>Pick your handle Cowboy!</p>
         </div>
       </div>
       <form className={formClass} onSubmit={handleSubmit(triggerLogin)} >
@@ -63,6 +64,10 @@ const loginForm = props => {
 
 loginForm.propTypes = {
   dispatch: PropTypes.func,
+  reset: PropTypes.func,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
+  handleSubmit: PropTypes.func,
 };
 
 const LoginForm = reduxForm({
