@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import Button from '../generalComponents/Button';
 import { authenticateUser, hideLogin } from './cybAuthActionCreators';
 import styles from './formStyle.styl';
 
@@ -13,50 +14,31 @@ const renderInput = field => (
   </div>
 );
 
-let dispatch;
-const formContainerClass = 'container login';
-const formClass = `${formContainerClass} form`;
-const toolbarClass = `${formContainerClass} toolbar`;
-const triggerLogin = (values) => {
+const triggerLogin = (values, dispatch) => {
   dispatch(authenticateUser(values));
   dispatch(hideLogin());
 };
 
 const loginForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  dispatch = props.dispatch;
+  const { handleSubmit, pristine, reset, submitting, dispatch } = props;
   return (
     <div className={styles.body} >
-      <div className={toolbarClass} >
-        <div >
-          <p>Pick your handle Cowboy!</p>
-        </div>
-      </div>
-      <form className={formClass} onSubmit={handleSubmit(triggerLogin)} >
-        <div>
-          <Field name="username" component={renderInput} type="text" label="username" />
-        </div>
-        <div>
-          <Field name="password" component={renderInput} type="password" label="password" />
-        </div>
-        <div>
-          <button
-            className={styles.button}
-            type="submit"
-            disabled={pristine || submitting}
-            style={{ margin: 12 }}
-          >Submit
-          </button>
-          <button
-            className={styles.button}
-            type="button"
-            disabled={pristine || submitting}
-            onClick={reset}
-            style={{ margin: 12 }}
-          >
-            Reset
-          </button>
-        </div>
+      <p>Pick your handle Cowboy!</p>
+      <form className={styles.form} onSubmit={handleSubmit(val => triggerLogin(val, dispatch))} >
+        <Field name="username" component={renderInput} type="text" label="username" />
+        <Field name="password" component={renderInput} type="password" label="password" />
+        <Button
+          type="submit"
+          disabled={pristine || submitting}
+        >Submit
+        </Button>
+        <Button
+          type="button"
+          disabled={pristine || submitting}
+          onClick={reset}
+        >
+          Reset
+        </Button>
       </form>
     </div>
   );

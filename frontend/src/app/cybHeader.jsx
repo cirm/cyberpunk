@@ -25,10 +25,8 @@ export class Header extends React.PureComponent {
     return (
       <div className={styles.header} >
         <p className={styles.titleText} >The Deep Net!</p>
-        <div>
-          {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
-            <Button onClick={this.triggerSignIn} >Jack in?</Button>}
-        </div>
+        {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
+          <Button onClick={this.triggerSignIn} >Jack in?</Button>}
         {/*       <AppBar
          title="QE testing!"
          iconElementLeft={

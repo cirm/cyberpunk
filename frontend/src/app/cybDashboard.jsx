@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import connect from 'react-redux/lib/connect/connect';
 import ChatContainer from '../cybChat/cybChatDashboard';
 import LoginForm from '../authentication/cybFormLogin';
@@ -18,9 +19,13 @@ class MainDashboard extends React.PureComponent {
   }
 }
 
+MainDashboard.defaultProps = {
+  loginState: false,
+};
+
 MainDashboard.propTypes = {
-  profile: PropTypes.object,
   loginState: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

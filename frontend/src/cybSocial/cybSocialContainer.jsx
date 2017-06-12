@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import connect from 'react-redux/lib/connect/connect';
-import PureComponent from '../lib/PureComponent';
 import { getOnlineDeckers } from './cybSocialActionsCreators';
 import styles from './cybSocialDashboard.styl';
 
 
-class SocialDashboard extends PureComponent {
+class SocialDashboard extends React.PureComponent {
   componentWillMount() {
-    return this.props.dispatch(getOnlineDeckers())
+    this.props.dispatch(getOnlineDeckers());
   }
 
   render() {
@@ -15,7 +14,6 @@ class SocialDashboard extends PureComponent {
       <div className={styles.socialContainer} ><p>oglaf</p></div>
     );
   }
-
 }
 
 function mapStateToProps(state) {

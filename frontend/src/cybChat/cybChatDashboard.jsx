@@ -12,7 +12,7 @@ import styles from './cybChatDashboard.styl';
 
 class ChatDashboard extends React.PureComponent {
   componentWillMount() {
-    if (!!this.props.renewSocket) {
+    if (this.props.renewSocket) {
       this.props.dispatch(socketRefresh());
     }
     return this.props.dispatch(getChatHistory());
@@ -31,9 +31,11 @@ class ChatDashboard extends React.PureComponent {
 ChatDashboard.defaultProps = {
   display: '',
   chat: new List(),
+  renewSocket: false,
 };
 
 ChatDashboard.propTypes = {
+  renewSocket: PropTypes.bool,
   display: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   chat: ImmutablePropTypes.list,

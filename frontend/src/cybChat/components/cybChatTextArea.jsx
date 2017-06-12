@@ -10,10 +10,12 @@ const renderChatBox = props => (
   <div className={styles.chatStyle} >
     {!props.chat === false ?
       props.chat.reverse().map(message => (
-        <p className={styles.lineStyle} key={message.get('timestamp')} >
-          {`[${moment(message.get('timestamp')).format('LTS')}]
-            <${message.get('decker')}> ${message.get('text')}`}
-        </p>
+        <div className={styles.lineStyle} key={message.get('timestamp')} >
+          <div className={styles.timeStamp} >
+            {`[${moment(message.get('timestamp')).format('LTS')}]`}
+          </div>
+          {`<${message.get('decker')}> ${message.get('text')}`}
+        </div>
       ))
       : null}
   </div>
