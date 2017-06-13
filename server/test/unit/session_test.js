@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const _ = require('lodash');
-const Promise = require('bluebird');
 const sinon = require('sinon');
 const sessions = require('../../src/models/sessionModel');
 

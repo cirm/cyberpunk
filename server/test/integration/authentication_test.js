@@ -40,7 +40,6 @@ describe('Authentication', () => {
       client.emit(authEvent, { username: 'bakufu', password: 'EndOria' });
       client.on(tokenEvent, (response) => {
         expect(response).to.be.an('object');
-        console.log(response.token.length);
         expect(response.token.length).to.equal(207);
         client.disconnect();
         done();
