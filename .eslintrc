@@ -1,14 +1,17 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:flowtype/recommended",
     "airbnb",
     "plugin:lodash-fp/recommended"
   ],
   "plugins": [
     "react",
     "mocha",
-    "lodash-fp"
+    "lodash-fp",
+    "flowtype"
   ],
   "env": {
     "browser": true,

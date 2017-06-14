@@ -1,12 +1,10 @@
+// @flow
+
 const cloneDeep = require('lodash/fp/cloneDeep');
 const cellModel = require('./cellModel');
 
-const Grid = {
-  side: 20,
-  cells: [],
-};
 
-const getCells = grid => grid.cells;
+const getCells = (grid: Grid): ?Cell[] => grid.cells;
 
 const buildEmptyGrid = () => {
   const grid = cloneDeep(Grid);
@@ -19,7 +17,7 @@ const buildEmptyGrid = () => {
   return grid;
 };
 
-const buildGrid = (data) => {
+const buildGrid = (data: any) => {
   if (!data) return buildEmptyGrid();
 };
 
@@ -30,7 +28,7 @@ const updateCell2d = (x, y, grid, cell) => {
   return ngrid;
 };
 
-const connectNeighbours = (grid) => {
+const connectNeighbours = (grid: Grid) => {
   for (let x = 0; x < grid.cells.length; x++) {
     // connect up
     if (x >= grid.side) {
