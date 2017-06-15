@@ -15,5 +15,5 @@ type Cell = {
 
 type Grid = {
   side: number,
-  cells: Cell[],
+  cells: Array<Cell>,
 };

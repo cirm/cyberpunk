@@ -9,7 +9,7 @@
   "scripts": {
     "prestart": "npm run db:migrate",
     "start": "nodemon --trace-warnings -L --exec npm run babel-node -- index.js",
-    "test": "mocha --recursive",
+    "test": "mocha --recursive --compilers js:babel-register",
     "coverage": "nyc --reporter=html --reporter=text mocha test/unit/*.js",
     "test:watch": "npm run test -- --watch",
     "db:migrate": "node ./node_modules/db-migrate/bin/db-migrate up",
@@ -25,7 +25,9 @@
     "db-migrate": "^0.10.0-beta.16",
     "db-migrate-pg": "^0.1.9",
     "jsonwebtoken": "^7.0.0",
-    "lodash": "^4.16.1",
+    "lodash": "^4.17.4",
+    "lodash.assign": "^4.2.0",
+    "lodash.restparam": "^3.6.1",
     "moment": "^2.13.0",
     "nodemon": "^1.9.1",
     "pg-monitor": "^0.7.1",
@@ -42,12 +44,14 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
+    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "flow-bin": "^0.48.0",
     "flow-remove-types": "^1.2.1",
     "mocha": "^3.1.2",
     "nyc": "^10.3.0",
+    "regenerator-runtime": "^0.10.5",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2"
   }

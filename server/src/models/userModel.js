@@ -22,7 +22,7 @@ function sanitizeDbUser(data = {}) {
  * @param {Object.<string>} user - Username to query, defaults to 'skiddle'
  * @param {Object} db - Db instance to use for querying
  * @returns {Promise.<{id: string, username: string,
-  *   display: string, roles: string, password: string}>}
+ *   display: string, roles: string, password: string}>}
  */
 const populateUser = async (user = { username: 'skiddle' }, db) => {
   if (!db) throw new Error('Missing database');

@@ -1,14 +1,17 @@
 // @flow
-
-const cloneDeep = require('lodash/fp/cloneDeep');
 const cells = require('../data');
 
-const cellTypes = new Map([[0, 'Black Ice'], [1, 'Firewall'], [2, 'Network Buffer'], [3, 'Node']]);
+const cellTypes = new Map([
+  [0, 'Black Ice'],
+  [1, 'Firewall'],
+  [2, 'Network Buffer'],
+  [3, 'Node'],
+]);
 
-let counter = 400;
-const ids = cells;
+let counter: number = 400;
+const ids: string[] = cells;
 
-const getCleanCell = () => {
+const getCleanCell = (): Cell => {
   const cell: Cell = {
     id: ids[counter],
     type: 3,
@@ -16,23 +19,23 @@ const getCleanCell = () => {
     lastTracker: '',
     connected: {},
   };
-  counter--;
+  counter -= 1;
   return cell;
 };
 
-const getTypedCell = (type: number) => {
+const getTypedCell = (type: number): Cell => {
   const cell = getCleanCell();
   cell.type = type;
   return cell;
 };
 
-const buildCell = (cell: Cell) => {
-  if (!cell) return getCleanCell();
+const buildCell = (cell: Cell = getCleanCell()): Cell => {
   if (cell.type && !cell.id) return getTypedCell(cell.type);
+  return getCleanCell();
 };
 
-const visitCell = (cell: Cell, person: string) => {
-  const pure = cloneDeep(cell);
+const visitCell = (cell: Cell, person: string): Cell => {
+  const pure = Object.assign({}, cell);
   pure.visited = cell.visited + 1;
   pure.lastTracket = person;
   return pure;

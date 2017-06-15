@@ -1,4 +1,5 @@
-const cellID = [
+// @flow
+const cellID: string[] = [
   'JF466', 'JH691', 'LV143', 'ET490', 'RB454', 'OY447', 'EW567', 'AO736', 'CI845', 'VA448',
   'IV843', 'NK475', 'ZZ944', 'MC816', 'XJ817', 'RJ279', 'DA130', 'CF535', 'WT711', 'VN816',
   'LO940', 'OP823', 'SG911', 'BV143', 'JF391', 'NX368', 'LO273', 'RC140', 'RE961', 'QV510',
