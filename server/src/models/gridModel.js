@@ -1,19 +1,19 @@
 // @flow
+
+const cloneDeep = require('lodash/fp/cloneDeep');
 const cellModel = require('./cellModel');
 
-let gameGrid: Grid;
-
-const getCell2d = (x: number, y: number, grid: Grid): Cell => grid.cells[(x * grid.side) + y];
-
-const updateCell2d = (x: number, y: number, grid: Grid, person: string): Grid => {
-  const ngrid: Grid = Object.assign({}, grid);
-  ngrid[(x * ngrid.side) + y] = cellModel.visitCell(getCell2d(x, y, ngrid), person);
-  return ngrid;
+let gameGrid: Grid = {
+  side: 20,
+  cells: [],
 };
 
-const connectNeighbours = async(baseGrid: Grid): Promise < Grid > => {
-  const grid: Grid = Object.assign({}, baseGrid);
+const connectNeighbours = async (baseGrid: Grid): Promise<Grid> => {
+  const grid: Grid = cloneDeep(baseGrid);
   for (let x = 0; x < grid.cells.length; x += 1) {
+    if (!grid.cells[x].connected) {
+      grid.cells[x].connected = {};
+    }
     // connect up
     if (x >= grid.side) {
       grid.cells[x].connected.up = x - grid.side;
@@ -34,34 +34,44 @@ const connectNeighbours = async(baseGrid: Grid): Promise < Grid > => {
   return grid;
 };
 
-const buildEmptyGrid = async(raw: Grid = { side: 20, cells: [] }): Promise < Grid > => {
-  const grid: Grid = raw;
+const buildEmptyGrid = async (raw: Grid = { side: 20, cells: [] }): Promise<Grid> => {
+  const grid: Grid = { side: raw.side, cells: [] };
   for (let x = 0; x < grid.side; x += 1) {
     for (let y = 0; y < grid.side; y += 1) {
-      grid.cells.push(cellModel.buildCell());
+      grid.cells.push(cellModel.buildCell(raw.cells[(x * raw.side) + y], (x * raw.side) + y));
     }
   }
-  await connectNeighbours(grid);
-  return grid;
+  const connectedGrid = await connectNeighbours(grid);
+  return connectedGrid;
 };
 
-const buildGrid = async(data: ? Cell[]): Promise < Grid > => {
-  if (!data) return buildEmptyGrid();
+const createGrid = async (data: ?Cell[]): Promise<Grid> => {
+  if (gameGrid.cells.length > 0) return gameGrid;
+  if (!data) {
+    gameGrid = await buildEmptyGrid();
+  } else if (data.length > 0 && (data.length % Math.sqrt(data.length) === 0)) {
+    gameGrid = await buildEmptyGrid({ side: Math.sqrt(data.length), cells: data });
+  }
+
   return gameGrid;
 };
 
-const updateState = (): Grid => gameGrid;
+const updateState = (cellPos: number, decker: string): Grid => {
+  const ngrid: Grid = cloneDeep(gameGrid);
+  ngrid.cells[cellPos] = cellModel.visitCell(ngrid.cells[cellPos], decker);
+  gameGrid = ngrid;
+  return gameGrid;
+};
+
+const resetGrid = (): void => {
+  gameGrid = { side: 20, cells: [] };
+};
 
 const getState = (): Grid => gameGrid;
-
-const createGrid = async(grid: Promise < Grid > = buildGrid()): Grid => {
-  gameGrid = grid;
-  return gameGrid;
-};
 
 module.exports = {
   createGrid,
   getState,
   updateState,
-  gameGrid,
+  resetGrid,
 };

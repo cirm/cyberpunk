@@ -21,6 +21,7 @@
   "rules": {
     "mocha/no-exclusive-tests": 2,
     "mocha/handle-done-callback": 2,
+    "flowtype/use-flow-type": 1,
     "mocha/no-synchronous-tests": 2,
     "react/prefer-stateless-function": [
       2,

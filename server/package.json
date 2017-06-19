@@ -39,16 +39,33 @@
   "babel": {
     "presets": [
       "flow"
-    ]
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "flow-bin": "^0.48.0",
     "flow-remove-types": "^1.2.1",
+    "has-flag": "^2.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
     "nyc": "^10.3.0",
     "regenerator-runtime": "^0.10.5",
