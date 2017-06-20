@@ -9,12 +9,11 @@
   "scripts": {
     "prestart": "npm run db:migrate",
     "start": "nodemon --trace-warnings -L --exec npm run babel-node -- index.js",
-    "test": "mocha --recursive --compilers js:babel-register",
-    "coverage": "nyc --reporter=html --reporter=text mocha test/unit/*.js",
+    "test": "mocha --recursive __tests__ --compilers js:babel-register",
+    "coverage": "jest unit --coverage",
     "test:watch": "npm run test -- --watch",
     "db:migrate": "node ./node_modules/db-migrate/bin/db-migrate up",
     "db:revert": "db-migrate down",
-    "babel-node": "babel-node",
     "db:create": "db-migrate create"
   },
   "author": "cirm",
@@ -39,24 +38,11 @@
   "babel": {
     "presets": [
       "flow"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
-  },
-  "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "sourceMap": false,
-    "instrument": false
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.3",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.24.1",
@@ -64,10 +50,9 @@
     "chai-as-promised": "^6.0.0",
     "flow-bin": "^0.48.0",
     "flow-remove-types": "^1.2.1",
-    "has-flag": "^2.0.0",
-    "istanbul": "^0.4.5",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "mocha": "^3.1.2",
-    "nyc": "^10.3.0",
     "regenerator-runtime": "^0.10.5",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2"
