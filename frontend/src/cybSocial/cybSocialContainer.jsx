@@ -11,14 +11,16 @@ class SocialDashboard extends React.PureComponent {
 
   render() {
     return (
-      <div className={styles.socialContainer} ><p>oglaf</p></div>
+      <div className={styles.socialContainer} >
+        {this.props.deckers ? this.props.deckers.map(decker => <p>{decker.get('decker')}</p>) : null}
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    deckers: state.getIn(['social', 'deckers']),
+    deckers: state.get('social'),
   };
 }
 
