@@ -12,7 +12,9 @@ class SocialDashboard extends React.PureComponent {
   render() {
     return (
       <div className={styles.socialContainer} >
-        {this.props.deckers ? this.props.deckers.map(decker => <p>{decker.get('decker')}</p>) : null}
+        {this.props.deckers.size > 0 ? this.props.deckers.map(decker =>
+          <p className={styles.entry}>{decker.get('decker')}</p>) :
+          <p className={styles.entry}>No real deckers online :(</p>}
       </div>
     );
   }
