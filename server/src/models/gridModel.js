@@ -3,6 +3,8 @@
 const cloneDeep = require('lodash/fp/cloneDeep');
 const cellModel = require('./cellModel');
 
+let gridHistory: Grid[] = [];
+
 let gameGrid: Grid = {
   side: 20,
   cells: [],
@@ -11,9 +13,6 @@ let gameGrid: Grid = {
 const connectNeighbours = async (baseGrid: Grid): Promise<Grid> => {
   const grid: Grid = cloneDeep(baseGrid);
   for (let x = 0; x < grid.cells.length; x += 1) {
-    if (!grid.cells[x].connected) {
-      grid.cells[x].connected = {};
-    }
     // connect up
     if (x >= grid.side) {
       grid.cells[x].connected.up = x - grid.side;
@@ -34,6 +33,8 @@ const connectNeighbours = async (baseGrid: Grid): Promise<Grid> => {
   return grid;
 };
 
+const updateGridHistory = (grid: Grid) => gridHistory.push(grid);
+
 const buildEmptyGrid = async (raw: Grid = { side: 20, cells: [] }): Promise<Grid> => {
   const grid: Grid = { side: raw.side, cells: [] };
   for (let x = 0; x < grid.side; x += 1) {
@@ -52,7 +53,7 @@ const createGrid = async (data: ?Cell[]): Promise<Grid> => {
   } else if (data.length > 0 && (data.length % Math.sqrt(data.length) === 0)) {
     gameGrid = await buildEmptyGrid({ side: Math.sqrt(data.length), cells: data });
   }
-
+  updateGridHistory(gameGrid);
   return gameGrid;
 };
 
@@ -60,18 +61,23 @@ const updateState = (cellPos: number, decker: string): Grid => {
   const ngrid: Grid = cloneDeep(gameGrid);
   ngrid.cells[cellPos] = cellModel.visitCell(ngrid.cells[cellPos], decker);
   gameGrid = ngrid;
+  updateGridHistory(gameGrid);
   return gameGrid;
 };
 
 const resetGrid = (): void => {
   gameGrid = { side: 20, cells: [] };
+  gridHistory = [];
 };
 
 const getState = (): Grid => gameGrid;
+
+const getHistory = (): Grid[] => gridHistory;
 
 module.exports = {
   createGrid,
   getState,
   updateState,
   resetGrid,
+  getHistory,
 };

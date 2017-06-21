@@ -10,6 +10,7 @@
     "prestart": "npm run db:migrate",
     "start": "nodemon --trace-warnings -L --exec npm run babel-node -- index.js",
     "test": "mocha --recursive __tests__ --compilers js:babel-register",
+    "babel-node": "babel-node",
     "coverage": "jest unit --coverage",
     "test:watch": "npm run test -- --watch",
     "db:migrate": "node ./node_modules/db-migrate/bin/db-migrate up",

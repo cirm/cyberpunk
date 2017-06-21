@@ -1,3 +1,4 @@
+// @flow
 module.exports = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
@@ -11,4 +12,6 @@ module.exports = {
   SET_CHAT_HISTORY: 'SET_CHAT_HISTORY',
   SOCKET_RENEWED: 'SOCKET_RENEWED',
   SOCKET_REFRESH: 'SOCKET_REFRESH',
+  GET_GRID: 'GET_GRID',
+  UPDATE_GRID: 'UPDATE_GRID',
 };
