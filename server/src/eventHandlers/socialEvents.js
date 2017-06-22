@@ -11,7 +11,7 @@ const getOnlineUsers = async (socket) => {
 };
 
 const userLogin = (socket, data) => socket.broadcast.emit('USER_LOGIN', data);
-const userLogoff = (socket, data) => socket.broadcast.emit('USER_LOGOFF', data);
+const userLogoff = (socket, data) => socket.broadcast.emit('USER_LOGOUT', data);
 
 /**
  * Attaches events to given socket

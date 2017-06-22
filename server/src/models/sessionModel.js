@@ -22,7 +22,7 @@ const addUserOnline = async (userId: string, username: string, socket: Socket) =
 const getUserBySocket = async (socketId: string): Promise<User | void> => _.find(onlineUsers, ['socket.id', socketId]);
 
 const getOnlineUsers = () => _.reduce(onlineUsers, (result, val) => {
-  result.push({ deckerId: val.userId, decker: val.username });
+  result.push({ id: val.userId, username: val.username });
   return result;
 }, []);
 

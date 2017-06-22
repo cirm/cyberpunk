@@ -1,13 +1,16 @@
 import { Map, fromJS } from 'immutable';
-import { AUTHENTICATE, LOGIN, LOGOUT } from './cybAuthConstants';
+import {
+  AUTHENTICATE,
+  LOGIN,
+  LOGOUT,
+  SHOW_LOGIN,
+  SOCKET_RENEWED,
+  HIDE_LOGIN,
+ } from './cybAuthConstants';
 import decodeProfile from './cybAuthToken';
 
 const tokenKey = 'deckerToken';
 
-const login1 = (state) => {
-  console.log('wheee');
-  return state;
-};
 const login = (state, data) => {
   const token = data.token;
   const profile = decodeProfile(token);
@@ -37,14 +40,12 @@ const hideLogin = state => state.set('login', false);
 
 function authReducer(state = getInitialState(), action) {
   switch (action.type) {
-    case 'SHOW_LOGIN':
+    case SHOW_LOGIN:
       return showLogin(state);
-    case 'SOCKET_RENEWED':
+    case SOCKET_RENEWED:
       return socketRenewed(state);
-    case 'HIDE_LOGIN':
+    case HIDE_LOGIN:
       return hideLogin(state);
-    case AUTHENTICATE:
-      return login1(state);
     case LOGIN:
       return login(state, action.data);
     case LOGOUT:

@@ -14,7 +14,7 @@ export class Header extends React.PureComponent {
   }
 
   triggerLogout() {
-    this.props.dispatch(logoutUser());
+    this.props.dispatch(logoutUser({ username: this.props.display }));
   }
 
   triggerSignIn() {
