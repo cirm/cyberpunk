@@ -1,6 +1,7 @@
 // @flow
 
 const cloneDeep = require('lodash/fp/cloneDeep');
+const _ = require('lodash');
 const cellModel = require('./cellModel');
 
 let gridHistory: Grid[] = [];
@@ -10,50 +11,51 @@ let gameGrid: Grid = {
   cells: [],
 };
 
-const connectNeighbours = async (baseGrid: Grid): Promise<Grid> => {
-  const grid: Grid = cloneDeep(baseGrid);
-  for (let x = 0; x < grid.cells.length; x += 1) {
+const functionalConnect = (baseGrid: Grid): Grid =>
+  _.reduce(baseGrid.cells, (result: Grid, value: Cell, key: number): Grid => {
     // connect up
-    if (x >= grid.side) {
-      grid.cells[x].connected.up = x - grid.side;
+    if (key >= baseGrid.side) {
+      value.connected.up = key - baseGrid.side;
     }
     // connect down
-    if (x < grid.cells.length - grid.side) {
-      grid.cells[x].connected.down = x + grid.side;
+    if (key < baseGrid.cells.length - baseGrid.side) {
+      value.connected.down = key + baseGrid.side;
     }
     // connect right
-    if (((x + 1) % grid.side) !== 0) {
-      grid.cells[x].connected.right = x + 1;
+    if (((key + 1) % baseGrid.side) !== 0) {
+      value.connected.right = key + 1;
     }
     // connect left
-    if (x % grid.side !== 0) {
-      grid.cells[x].connected.left = x - 1;
+    if (key % baseGrid.side !== 0) {
+      value.connected.left = key - 1;
     }
-  }
+    result.cells.push(value);
+    return result;
+  }, { side: baseGrid.side, cells: [] });
+
+const updateGridHistory = (grid: Grid): Grid => {
+  gridHistory.push(grid);
   return grid;
 };
 
-const updateGridHistory = (grid: Grid) => gridHistory.push(grid);
+const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 
-const buildEmptyGrid = async (raw: Grid = { side: 20, cells: [] }): Promise<Grid> => {
-  const grid: Grid = { side: raw.side, cells: [] };
-  for (let x = 0; x < grid.side; x += 1) {
-    for (let y = 0; y < grid.side; y += 1) {
-      grid.cells.push(cellModel.buildCell(raw.cells[(x * raw.side) + y], (x * raw.side) + y));
-    }
-  }
-  const connectedGrid = await connectNeighbours(grid);
-  return connectedGrid;
-};
+const buildEmptyFunctionalGrid = (raw: Grid): Grid =>
+  _.reduce(Array.from(new Array(raw.side * raw.side)), (result: Grid, value: number, key: number) => {
+    result.cells.push(cellModel.buildCell(raw.cells[key], key));
+    return result;
+  }, { side: raw.side, cells: [] });
+
+const getGrid = (raw: Grid = { side: 20, cells: [] }): Grid =>
+  compose(updateGridHistory, functionalConnect, buildEmptyFunctionalGrid)(raw);
 
 const createGrid = async (data: ?Cell[]): Promise<Grid> => {
   if (gameGrid.cells.length > 0) return gameGrid;
   if (!data) {
-    gameGrid = await buildEmptyGrid();
+    gameGrid = getGrid();
   } else if (data.length > 0 && (data.length % Math.sqrt(data.length) === 0)) {
-    gameGrid = await buildEmptyGrid({ side: Math.sqrt(data.length), cells: data });
+    gameGrid = getGrid({ side: Math.sqrt(data.length), cells: data });
   }
-  updateGridHistory(gameGrid);
   return gameGrid;
 };
 

@@ -4,5 +4,4 @@
 
 [libs]
 ./decl
-./flow_typed
 [options]
