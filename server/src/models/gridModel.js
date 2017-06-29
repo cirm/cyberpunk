@@ -2,6 +2,7 @@
 
 const cloneDeep = require('lodash/fp/cloneDeep');
 const _ = require('lodash');
+const fd = require('lodash/fp');
 const cellModel = require('./cellModel');
 
 let gridHistory: Grid[] = [];
@@ -40,16 +41,21 @@ const updateGridHistory = (grid: Grid): Grid => {
 
 const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 
-const buildEmptyFunctionalGrid = (raw: Grid): Grid =>
-  _.reduce(Array.from(new Array(raw.side * raw.side)), (result: Grid, value: number, key: number) => {
-    result.cells.push(cellModel.buildCell(raw.cells[key], key));
-    return result;
-  }, { side: raw.side, cells: [] });
+const populateNames = (raw: Cell[]): Cell[] => _.map(raw, cell => cellModel.buildCell(cell));
+
+const buildGrid = (raw: Grid): Grid => {
+  const grid = { side: raw.side, cells: raw.cells };
+  if (raw.cells.length === 0) {
+    grid.cells = _.map(Array.from(Array(grid.side * grid.side).keys()), pos => ({ pos }));
+  }
+  grid.cells = populateNames(grid.cells);
+  return grid;
+};
 
 const getGrid = (raw: Grid = { side: 20, cells: [] }): Grid =>
-  compose(updateGridHistory, functionalConnect, buildEmptyFunctionalGrid)(raw);
+  compose(updateGridHistory, functionalConnect, buildGrid)(raw);
 
-const createGrid = async (data: ?Cell[]): Promise<Grid> => {
+const createGrid = (data: ?Cell[]): Grid => {
   if (gameGrid.cells.length > 0) return gameGrid;
   if (!data) {
     gameGrid = getGrid();

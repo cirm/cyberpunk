@@ -1,6 +1,7 @@
 // @flow
 
 type Cell = {
+  pos: number,
   id: string,
   type: number,
   visited: number,

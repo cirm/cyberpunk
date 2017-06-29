@@ -24,14 +24,14 @@ const getCleanCell = (pos: number): Cell => {
   return cell;
 };
 
-const buildCell = (cell: Cell, pos: number): Cell => {
-  const raw = getCleanCell(pos);
+const buildCell = (cell: Cell): Cell => {
+  const raw = getCleanCell(cell.pos);
   if (cell && cell.type) raw.type = cell.type;
   return raw;
 };
 
 const visitCell = (cell: Cell, person: string): Cell => {
-  const pure = cloneDeep(cell);
+  const pure: Cell = cloneDeep(cell);
   pure.visited = cell.visited + 1;
   pure.lastTracker = person;
   return pure;
