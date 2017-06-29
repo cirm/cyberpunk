@@ -41,14 +41,19 @@ const updateGridHistory = (grid: Grid): Grid => {
 
 const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 
-const populateNames = (raw: Cell[]): Cell[] => _.map(raw, cell => cellModel.buildCell(cell));
-
 const buildGrid = (raw: Grid): Grid => {
   const grid = { side: raw.side, cells: raw.cells };
   if (raw.cells.length === 0) {
-    grid.cells = _.map(Array.from(Array(grid.side * grid.side).keys()), pos => ({ pos }));
+    grid.cells = _.times(grid.side * grid.side).reduce((result, val) => {
+      result.push(cellModel.buildCell(raw.cells[val], val))
+      return result;
+    }, []);
+  } else {
+    grid.cells = _.times(grid.cells.length).reduce((result, val) => {
+      result.push(cellModel.buildCell(grid.cells[val], val))
+      return result;
+    }, [])
   }
-  grid.cells = populateNames(grid.cells);
   return grid;
 };
 

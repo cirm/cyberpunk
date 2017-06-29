@@ -24,8 +24,8 @@ const getCleanCell = (pos: number): Cell => {
   return cell;
 };
 
-const buildCell = (cell: Cell): Cell => {
-  const raw = getCleanCell(cell.pos);
+const buildCell = (cell: Cell, pos: number): Cell => {
+  const raw = getCleanCell(pos);
   if (cell && cell.type) raw.type = cell.type;
   return raw;
 };
