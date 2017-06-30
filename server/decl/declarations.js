@@ -28,3 +28,28 @@ type User = {
   username: string,
   socket: Socket,
 }
+
+type AnyArrayType<V> = Array<V> | $ReadOnlyArray<V>;
+
+declare module 'lodash/fp' {
+  /* Array */
+declare function reduce<A, V>(
+  iteratee: (acc: A, value: V) => A,
+  ...rest: Array<void>
+): (acc: A, ...rest: Array<void>) => (col: ?AnyArrayType<V>) => A;
+declare function reduce<A, V>(
+  iteratee: (acc: A, value: V) => A,
+  acc: A,
+  ...rest: Array<void>
+): (col: ?AnyArrayType<V>) => A;
+declare function reduce<A, V>(
+  iteratee: (acc: A, value: V) => A,
+  acc: A,
+  col: ?AnyArrayType<V>,
+): A;
+declare function range(
+   start: number,
+   ...rest: Array<void>
+ ): (end: number) => Array<number>;
+ declare function range(start: number, end: number): Array<number>;
+}

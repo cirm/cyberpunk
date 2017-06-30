@@ -1,8 +1,6 @@
 // @flow
 
-const _cloneDeep = require('lodash/fp/cloneDeep');
-const _reduce = require('lodash/fp/reduce');
-const _range = require('lodash/fp/range');
+const _ = require('lodash/fp');
 const cellModel = require('./cellModel');
 
 let gridHistory: Grid[] = [];
@@ -13,7 +11,7 @@ let gameGrid: Grid = {
 };
 
 const functionalConnect = (baseGrid: Grid): Grid =>
-  _reduce((result: Grid, value: Cell): Grid => {
+  _.reduce((result: Grid, value: Cell): Grid => {
     // connect up
     if (value.pos >= baseGrid.side) {
       value.connected.up = value.pos - baseGrid.side;
@@ -44,15 +42,15 @@ const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 const buildGrid = (raw: Grid): Grid => {
   const grid: Grid = { side: raw.side, cells: raw.cells };
   if (raw.cells.length === 0) {
-    grid.cells = _reduce((result: Cell[], val: number): Cell[] => {
+    grid.cells = _.reduce((result: Cell[], val: number): Cell[] => {
       result.push(cellModel.buildCell(grid.cells[val], val));
       return result;
-    }, [])(_range(0)(grid.side * grid.side));
+    }, [])(_.range(0)(grid.side * grid.side));
   } else {
-    grid.cells = _reduce((result: Cell[], val: number): Cell[] => {
+    grid.cells = _.reduce((result: Cell[], val: number): Cell[] => {
       result.push(cellModel.buildCell(raw.cells[val], val));
       return result;
-    }, [])(_range(0)(grid.cells.length));
+    }, [])(_.range(0)(grid.cells.length));
   }
   return grid;
 };
@@ -71,7 +69,7 @@ const createGrid = (data: ?Cell[]): Grid => {
 };
 
 const updateState = (cellPos: number, decker: string): Grid => {
-  const ngrid: Grid = _cloneDeep(gameGrid);
+  const ngrid: Grid = _.cloneDeep(gameGrid);
   ngrid.cells[cellPos] = cellModel.visitCell(ngrid.cells[cellPos], decker);
   gameGrid = ngrid;
   updateGridHistory(gameGrid);
