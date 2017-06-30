@@ -3,10 +3,14 @@ const logger = require('../utilities/winston');
 const deckerEvents = require('./deckerEvents');
 const authEvents = require('./authEvents');
 const socialEvents = require('./socialEvents');
+const gridEvents = require('./gridEvents');
 
 const testingEvent = socket => socket.emit('tested');
 
-const protectedRoutes = { testing: testingEvent };
+const protectedRoutes = {
+  testing: testingEvent,
+  GET_GRID_STATE: gridEvents.getGrid,
+};
 
 const attachProtectedEventsToSocket = (socket) => {
   _.mapValues(protectedRoutes, (fn, key) =>

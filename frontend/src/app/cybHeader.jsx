@@ -1,5 +1,6 @@
 import React from 'react';
 import connect from 'react-redux/lib/connect/connect';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '../generalComponents/Button';
 import { logoutUser, displayLogin } from '../authentication/cybAuthActionCreators';
@@ -27,6 +28,7 @@ export class Header extends React.PureComponent {
         <p className={styles.titleText} >The Deep Net!</p>
         {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
           <Button onClick={this.triggerSignIn} >Jack in?</Button>}
+        {this.props.display ? <Button> <Link to="/grid">Grid</Link> </Button> : null}
         {/*       <AppBar
          title="QE testing!"
          iconElementLeft={

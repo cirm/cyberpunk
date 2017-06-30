@@ -1,4 +1,6 @@
 
+// @flow
+
 type AnyArrayType<V> = Array<V> | $ReadOnlyArray<V>;
 type CollectionType<V> = AnyArrayType<V> | {+[key: any]: V};
 type JsonType =
