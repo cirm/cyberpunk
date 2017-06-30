@@ -3,8 +3,6 @@
 const _cloneDeep = require('lodash/fp/cloneDeep');
 const _reduce = require('lodash/fp/reduce');
 const _range = require('lodash/fp/range');
-const _ = require('lodash');
-const fd = require('lodash/fp');
 const cellModel = require('./cellModel');
 
 let gridHistory: Grid[] = [];
