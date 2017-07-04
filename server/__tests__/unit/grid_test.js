@@ -100,5 +100,4 @@ describe('Grid', () => {
     expect(state2.cells[3].lastTracker).to.equal('decker3');
     return expect(state2.cells[2].lastTracker).to.equal('decker1');
   });
-
 });

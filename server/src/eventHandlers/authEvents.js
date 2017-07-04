@@ -49,6 +49,7 @@ const checkToken = async (bearer) => {
 const renewSocketAuth = async (data, socket) => {
   const profile = await checkToken(data.token);
   if (!profile) {
+    console.log('no profile');
     return socket.emit(events.ERROR, 'Authentication error');
   }
   await sessions.addUserOnline(profile.id, profile.username, socket);

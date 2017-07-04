@@ -2,6 +2,7 @@ import mapValues from 'lodash/mapValues';
 import { login, logoutUser, socketRenewed } from '../authentication/cybAuthActionCreators';
 import { getMessage, setChatHistory } from '../cybChat/cybActionCreators';
 import { populateUserList, userLogout, userLogIn } from '../cybSocial/cybSocialActionsCreators';
+import { populateGridData } from '../cybGrid/cybGridActionCreators';
 
 const remoteActionsMap = {
   TOKEN: login,
@@ -13,6 +14,7 @@ const remoteActionsMap = {
   USER_LIST: populateUserList,
   USER_LOGIN: userLogIn,
   USER_LOGOUT: userLogout,
+  GRID_DATA: populateGridData,
 };
 
 export const mapRemoteActions = (socket, store) =>

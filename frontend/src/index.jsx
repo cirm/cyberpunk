@@ -5,7 +5,7 @@ import Provider from 'react-redux/lib/components/Provider';
 import { AppContainer } from 'react-hot-loader';
 import App from './app/cybApp';
 import { getStore } from './store';
-import Routes from './routes';
+import Routes from './routes.jsx';
 
 require('./fonts/ahamono.styl');
 
