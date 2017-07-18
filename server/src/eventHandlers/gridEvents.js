@@ -1,16 +1,5 @@
 const gridModel = require('../models/gridModel');
 
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
 const getGrid = socket => {
   console.log('request');
   let grid = gridModel.getState();
@@ -19,18 +8,6 @@ const getGrid = socket => {
   }
   return socket.emit('GRID_DATA', gridModel.getState())
 }
-
-
-
-
-
-
-
-
-=======
-const getGrid = socket => socket.emit('GRID_DATA', gridModel.getState());
->>>>>>> tinkering
-
 
 const attachEvents = socket => {
   socket.on('GET_GRID', () => undefined);
