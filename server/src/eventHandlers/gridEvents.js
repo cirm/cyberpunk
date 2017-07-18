@@ -1,7 +1,7 @@
-
 const gridModel = require('../models/gridModel');
 
 
+<<<<<<< HEAD
 
 
 
@@ -27,6 +27,9 @@ const getGrid = socket => {
 
 
 
+=======
+const getGrid = socket => socket.emit('GRID_DATA', gridModel.getState());
+>>>>>>> tinkering
 
 
 const attachEvents = socket => {

@@ -12,17 +12,14 @@ const cellTypes = new Map([
 
 const ids: string[] = cells;
 
-const getCleanCell = (pos: number): Cell => {
-  const cell: Cell = {
-    pos,
-    id: ids[pos],
-    type: 3,
-    visited: 0,
-    lastTracker: '',
-    connected: {},
-  };
-  return cell;
-};
+const getCleanCell = (pos: number): Cell => ({
+  pos,
+  id: ids[pos],
+  type: 3,
+  visited: 0,
+  lastTracker: '',
+  connected: {},
+});
 
 const buildCell = (cell: Cell, pos: number): Cell => {
   const raw = getCleanCell(pos);
