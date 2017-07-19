@@ -5,7 +5,7 @@ import { Cell } from './cybGridCell';
 export const Line = props => (
   <div key={props.line} className={styles.line} >{
     props.cells.map((cell) => (
-      <Cell id={cell.get('id')} visited={cell.get('visited')} pos={cell.get('pos')} />
+      <Cell id={cell.get('id')} key={cell.get('id')} visited={cell.get('visited')} pos={cell.get('pos')} />
     ))}
   </div >
 );
