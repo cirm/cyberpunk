@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
@@ -18,10 +19,45 @@ class ChatDashboard extends React.PureComponent {
     return this.props.dispatch(getChatHistory());
   }
 
+  componentWillUpdate(nextProps) {
+    this.historyChanged = nextProps.chat.size !== this.props.chat.size;
+    if (this.historyChanged) {
+      const chat = this.cybChatTextArea;
+      const scrollPos = chat.scrollTop;
+      const scrollBottom = (chat.scrollHeight - chat.clientHeight);
+      this.scrollAtBottom = (scrollBottom <= 0) || (scrollPos === scrollBottom);
+      if (!this.scrollAtBottom) {
+        const numMessages = chat.childNodes.length;
+        this.topMessage = numMessages === 0 ? null : chat.childNodes[0];
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.historyChanged) {
+      if (this.scrollAtBottom) {
+        this.scrollToBottom();
+      }
+      if (this.topMessage) {
+        this.topMessage.scrollIntoView();
+      }
+    }
+  }
+
+
+  scrollToBottom() {
+    const chat = this.cybChatTextArea;
+    chat.scrollTop = chat.scrollHeight;
+  }
+
   render() {
     return (
       <div className={styles.chat} >
-        <ChatContainer chat={this.props.chat} display={this.props.display} />
+        <ChatContainer
+          chat={this.props.chat}
+          display={this.props.display}
+          inputRef={(el) => { this.cybChatTextArea = el; }}
+        />
         <SocialConatiner {...this.props} />
       </div>
     );

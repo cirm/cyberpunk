@@ -38,6 +38,7 @@ const checkToken = async (bearer) => {
   let isAllowed;
   const token = extractToken(bearer);
   try {
+    console.log('whee');
     isAllowed = await JWT.verifyAsync(token, config.tokenSecret);
   } catch (e) {
     logger.info(tokenError(e));
@@ -47,6 +48,7 @@ const checkToken = async (bearer) => {
 };
 
 const renewSocketAuth = async (data, socket) => {
+  console.log(data);
   const profile = await checkToken(data.token);
   if (!profile) {
     console.log('no profile');

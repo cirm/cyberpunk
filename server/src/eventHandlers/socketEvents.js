@@ -21,6 +21,7 @@ const attachProtectedEventsToSocket = (socket) => {
       }
       const isAllowed = await authEvents.checkToken(data.token);
       if (!isAllowed) {
+        console.log('not allowed');
         socket.emit('ERROR', 'Authentication error');
         return;
       }

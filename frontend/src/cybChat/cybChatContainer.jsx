@@ -9,7 +9,7 @@ import styles from './cybChatContainer.styl';
 
 const chatContainer = props => (
   <div className={styles.chatContainer} >
-    <CybChat chat={props.chat} />
+    <CybChat chat={props.chat} inputRef={props.inputRef} />
     <ChatInput display={props.display} />
   </div>
 );

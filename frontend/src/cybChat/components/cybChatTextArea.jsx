@@ -7,7 +7,7 @@ import styles from './cybChatTextArea.styl';
 moment.locale('et');
 
 const renderChatBox = props => (
-  <div className={styles.chatStyle} >
+  <div ref={props.inputRef} className={styles.chatStyle} >
     {!props.chat === false ?
       props.chat.reverse().map(message => (
         <div className={styles.lineStyle} key={message.get('timestamp')} >
