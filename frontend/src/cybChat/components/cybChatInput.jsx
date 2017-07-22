@@ -16,9 +16,9 @@ const logField = (input) => {
   dispatch(reset('ChatForm'));
 };
 
-const renderInput = field => (  // Define stateless component to render input and errors
+const renderInput = field => ( // Define stateless component to render input and errors
   <div className={styles.formStyle} >
-    <input className={styles.formStyle} {...field.input} autoFocus type={field.type} />
+    <input className={styles.formStyle} {...field.input} type={field.type} />
     {
       field.meta.touched &&
       field.meta.error &&
