@@ -8,12 +8,13 @@ const button = props => (
 
 button.defaultProps = {
   onClick: () => undefined,
-  children: 'button',
 };
 
 button.propTypes = {
   onClick: PropTypes.func,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node]).isRequired,
 };
 
 export default button;
