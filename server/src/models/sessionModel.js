@@ -4,12 +4,19 @@ const events = require('../constants');
 
 const onlineUsers: User[] = [];
 
+const getOnlineUsers = () => _.reduce(onlineUsers, (result, val) => {
+  result.push({ id: val.userId, username: val.username });
+  return result;
+}, []);
+
 const updateExistingUser = async (object: User, socket: Socket) => {
   object.socket.emit(events.LOGOUT);
   return _.assign(object, { socket });
 };
-const addNewUser = async (userId: string, username: string, socket: Socket) =>
-  onlineUsers.push({ userId, username, socket });
+const addNewUser = async (userId: string, username: string, socket: Socket) => {
+  await onlineUsers.push({ userId, username, socket });
+  return getOnlineUsers();
+};
 
 const addUserOnline = async (userId: string, username: string, socket: Socket) => {
   const object = await _.find(onlineUsers, ['userId', userId]);
@@ -20,11 +27,6 @@ const addUserOnline = async (userId: string, username: string, socket: Socket) =
 };
 
 const getUserBySocket = async (socketId: string): Promise<User | void> => _.find(onlineUsers, ['socket.id', socketId]);
-
-const getOnlineUsers = () => _.reduce(onlineUsers, (result, val) => {
-  result.push({ id: val.userId, username: val.username });
-  return result;
-}, []);
 
 const userSignOff = async (userId: string) => _.remove(onlineUsers, user => user.userId === userId);
 

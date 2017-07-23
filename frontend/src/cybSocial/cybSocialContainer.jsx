@@ -6,7 +6,9 @@ import styles from './cybSocialDashboard.styl';
 
 class SocialDashboard extends React.PureComponent {
   componentDidMount() {
-    this.props.dispatch(getOnlineDeckers());
+    if (!this.props.renew) {
+      this.props.dispatch(getOnlineDeckers());
+    }
   }
 
   render() {
@@ -23,6 +25,7 @@ class SocialDashboard extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     deckers: state.get('social'),
+    renew: state.getIn(['profile', 'needsRenew']),
   };
 }
 
