@@ -51,7 +51,7 @@ class ChatDashboard extends React.PureComponent {
           }}
         />
         <SocialConatiner {...this.props} />
-      </div >
+      </div>
     );
   }
 }
