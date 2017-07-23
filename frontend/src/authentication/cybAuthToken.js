@@ -1,4 +1,4 @@
-const urlBase64Becode = str => {
+const urlBase64Becode = (str) => {
   let output = str.replace('-', '+').replace('_', '/');
 
   switch (output.length % 4) {
@@ -20,7 +20,7 @@ const urlBase64Becode = str => {
 
 const splitToken = str => str.split('.')[1];
 
-const decodeProfile = str => {
+const decodeProfile = (str) => {
   const encodedProfile = splitToken(str);
   return urlBase64Becode(encodedProfile);
 };

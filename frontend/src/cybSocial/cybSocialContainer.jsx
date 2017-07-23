@@ -5,7 +5,7 @@ import styles from './cybSocialDashboard.styl';
 
 
 class SocialDashboard extends React.PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(getOnlineDeckers());
   }
 

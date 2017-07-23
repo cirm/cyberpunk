@@ -1,12 +1,11 @@
 import { Map, fromJS } from 'immutable';
 import {
-  AUTHENTICATE,
   LOGIN,
   LOGOUT,
   SHOW_LOGIN,
   SOCKET_RENEWED,
   HIDE_LOGIN,
- } from './cybAuthConstants';
+} from './cybAuthConstants';
 import decodeProfile from './cybAuthToken';
 
 const tokenKey = 'deckerToken';

@@ -11,7 +11,7 @@ import styles from './cybChatDashboard.styl';
 
 
 class ChatDashboard extends React.PureComponent {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.renewSocket) {
       this.props.dispatch(socketRefresh());
     }
