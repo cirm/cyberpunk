@@ -1,4 +1,4 @@
-import { List, fromJS } from 'immutable';
+import { Set, fromJS } from 'immutable';
 import decodeProfile from '../authentication/cybAuthToken';
 import {
   POPULATE_ONLINE,
@@ -8,20 +8,20 @@ import {
 import {
   LOGIN,
   LOGOUT,
-} from '../authentication/cybAuthConstants'
+} from '../authentication/cybAuthConstants';
 
-const updateUsers = (state, data) => new List(fromJS(data));
+const updateUsers = (state, data) => new Set(fromJS(data));
 
-const userJoined = (state, data) => state.push(fromJS(data));
+const userJoined = (state, data) => state.add(fromJS(data));
 
 const userLeft = (state, data) => state.filter(decker => decker.get('username') !== data.username);
 
 const pushSelf = (state, data) => {
   const profile = decodeProfile(data.token);
-  return state.push(fromJS({ username: profile.username, id: profile.id }));
+  return state.add(fromJS({ username: profile.username, id: profile.id }));
 };
 
-function socialReducer(state = new List(), action) {
+function socialReducer(state = new Set(), action) {
   switch (action.type) {
     case POPULATE_ONLINE:
       return updateUsers(state, action.data);
