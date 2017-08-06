@@ -26,9 +26,11 @@ export class Header extends React.PureComponent {
     return (
       <div className={styles.header} >
         <p className={styles.titleText} >The Deep Net!</p>
-        {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
-          <Button onClick={this.triggerSignIn} >Jack in?</Button>}
-        {this.props.display ? <Button> <Link to="/grid">Grid</Link> </Button> : null}
+
+        {this.props.display && this.props.urlPath == '/' ? <Button> <Link to="/grid">Grid</Link> </Button> :
+         this.props.urlPath != '/' ? <Button> <Link to="/">Chat</Link> </Button>: null}
+         {this.props.display ? <Button onClick={this.triggerLogout} >Log Out?</Button> :
+           <Button onClick={this.triggerSignIn} >Jack in?</Button>}
         {/*       <AppBar
          title="QE testing!"
          iconElementLeft={
@@ -69,6 +71,7 @@ Header.propTypes = {
 function mapStateToProps(state) {
   return {
     display: state.getIn(['profile', 'username']),
+    urlPath: state.get('router').location.pathname,
   };
 }
 

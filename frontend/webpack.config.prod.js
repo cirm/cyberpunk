@@ -20,17 +20,39 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
-    }, {
-      test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
-      loader: 'url-loader?limit=100000&name=[name].[ext]',
-    }, {
+    },  {
       test: /\.styl$/,
       use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use: ["css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]",
-          "postcss-loader",
-          "stylus-loader"]
-      })
+        fallback: 'style-loader',
+        use: ['css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer({
+                browsers: ['last 3 versions', '> 1%'],
+              })],
+            },
+          },
+          'stylus-loader'],
+      }),
+    }, {
+      test: /\.png$/,
+      loader: 'url-loader',
+      query: { mimetype: 'image/png' },
+    }, {
+      test: /\.svg$/, loader: 'url-loader?limit=65000&mimetype=image/svg+xml&name=src/fonts/[name].[ext]',
+    }, {
+      test: /\.woff$/,
+      loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=src/fonts/[name].[ext]',
+    }, {
+      test: /\.woff2$/,
+      loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=src/fonts/[name].[ext]',
+    }, {
+      test: /\.[ot]tf$/,
+      loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=src/fonts/[name].[ext]',
+    }, {
+      test: /\.eot$/,
+      loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=src/fonts/[name].[ext]',
     }]
   },
   resolve: {

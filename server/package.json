@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prestart": "npm run db:migrate",
-    "start":"nodemon --trace-warnings -L --exec npm run babel-node -- index.js",
+    "start": "nodemon --trace-warnings -L --exec npm run babel-node -- index.js",
     "debug": "DEBUG=* npm start",
     "test": "mocha --recursive __tests__ --compilers js:babel-register",
     "babel-node": "babel-node",

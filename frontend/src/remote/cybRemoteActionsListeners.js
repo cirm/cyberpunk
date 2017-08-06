@@ -1,4 +1,4 @@
-import mapValues from 'lodash/mapValues';
+import mapKeys from 'lodash/fp/mapKeys';
 import { login, logoutUser, socketRenewed } from '../authentication/cybAuthActionCreators';
 import { getMessage, setChatHistory } from '../cybChat/cybActionCreators';
 import { populateUserList, userLogout, userLogIn } from '../cybSocial/cybSocialActionsCreators';
@@ -18,6 +18,7 @@ const remoteActionsMap = {
 };
 
 export const mapRemoteActions = (socket, store) =>
-  mapValues(remoteActionsMap, (value, key) =>
+  mapKeys((key) =>
     socket.on(key, data =>
-      store.dispatch(value(data))));
+      store.dispatch(remoteActionsMap[key](data)
+    )))(remoteActionsMap);
