@@ -38,6 +38,8 @@ INSERT INTO decker.services (name) VALUES
     ('decker_node');
 
 INSERT INTO decker.roles (service_id, name) VALUES
+    ((SELECT id FROM decker.services where name = 'decker_web'), 'tracker'),
+    ((SELECT id FROM decker.services where name = 'decker_web'), 'cracker'),
     ((SELECT id FROM decker.services where name = 'decker_web'), 'decker'),
     ((SELECT id FROM decker.services where name = 'decker_web'), 'admin'),
     ((SELECT id FROM decker.services where name = 'decker_web'), 'skiddle');
