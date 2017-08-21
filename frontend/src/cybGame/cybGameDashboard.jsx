@@ -1,21 +1,18 @@
 import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { List } from 'immutable';
-import PropTypes from 'prop-types';
 import connect from 'react-redux/lib/connect/connect';
-import ChatContainer from './cybChatContainer';
-import SocialConatiner from '../cybSocial/cybSocialContainer';
-import { getChatHistory } from './cybActionCreators';
-import { socketRefresh } from '../authentication/cybAuthActionCreators';
-import styles from './cybChatDashboard.styl';
-
+import { TrackerTool } from './components/cybGameTrackerTool';
 
 export class GameDashboard extends React.PureComponent {
+
+  hasPaths() {
+    if (!this.props.trackedCells) return false;
+    console.log(this.props.trackedCells);
+    return false;
+  }
+
   render() {
     return (
-      <div >
-        Halo
-      </div>
+      <TrackerTool display={this.props.display} />
     );
   }
 }
@@ -23,6 +20,7 @@ export class GameDashboard extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     display: state.getIn(['profile', 'username']),
+    trackedCells: state.getIn(['game', 'trackedCells']),
   };
 }
 

@@ -9,7 +9,6 @@
   ],
   "plugins": [
     "react",
-    "mocha",
     "lodash-fp",
     "flowtype"
   ],
@@ -19,10 +18,7 @@
     "mocha": true
   },
   "rules": {
-    "mocha/no-exclusive-tests": 2,
-    "mocha/handle-done-callback": 2,
     "flowtype/use-flow-type": 1,
-    "mocha/no-synchronous-tests": 2,
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
     "react/prefer-stateless-function": [
